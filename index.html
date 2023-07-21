@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+</head>
+<body>
+    
+</body>
+</html>
+  <style>
+    .completed {
+      text-decoration: line-through;
+    }
+    .delete-button {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+  <script>
+    function addTask() {
+      var taskInput = document.getElementById("taskInput");
+      var task = taskInput.value;
+
+      if (task !== "") {
+        var newTask = document.createElement("li");
+        newTask.innerHTML = task;
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.className = "delete-button";
+        deleteButton.onclick = function() {
+          this.parentNode.remove();
+        };
+
+        newTask.appendChild(deleteButton);
+
+        var taskList = document.getElementById("taskList");
+        taskList.appendChild(newTask);
+
+        taskInput.value = "";
+      }
+    }
+
+    function toggleTask() {
+      this.classList.toggle("completed");
+    }
+
+    function clearList() {
+      var taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+    }
+  </script>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input type="text" id="taskInput" placeholder="Enter a task">
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList">
+    <li onclick="toggleTask()">Wash dishes<button onclick="this.parentNode.remove()" class="delete-button">Delete</button></li>
+    <li onclick="toggleTask()">Cook<button onclick="this.parentNode.remove()" class="delete-button">Delete</button></li>
+    <li onclick="toggleTask()">Eat<button onclick="this.parentNode.remove()" class="delete-button">Delete</button></li>
+    <li onclick="toggleTask()">Go to work<button onclick="this.parentNode.remove()" class="delete-button">Delete</button></li>
+    <li onclick="toggleTask()">Buy groceries<button onclick="this.parentNode.remove()" class="delete-button">Delete</button></li>
+  </ul>
+  <button onclick="clearList()">Clear List</button>
+</body>
